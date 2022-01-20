@@ -1,0 +1,26 @@
+﻿@page "/pages/delete/{id}"
+@model DeleteModel
+
+<div class="m-2">
+    <partial name="_ProductEditor" model="@Model.ViewModel" />
+</div>
+
+@functions {
+
+    public class DeleteModel: EditorPageModel {
+
+        public DeleteModel(DataContext dbContext): base(dbContext) {}
+
+        public async Task OnGetAsync(long id) {
+            ViewModel = ViewModelFactory.Delete(
+                await DataContext.Products.FindAsync(id) ?? new Product(), 
+                Categories, Suppliers);
+        }
+
+        public async Task<IActionResult> OnPostAsync([FromForm]Product product) {
+            DataContext.Products.Remove(product);
+            await DataContext.SaveChangesAsync();
+            return RedirectToPage(nameof(Index));
+        }
+    }
+}

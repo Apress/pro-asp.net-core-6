@@ -1,0 +1,16 @@
+﻿@page
+@inject CitiesData Data
+
+<div class="m-2">
+    <table class="table table-sm table-striped table-bordered">
+        <tbody>
+            @foreach (City c in Data.Cities) {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.Country</td>
+                    <td>@c.Population</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h6 class="bg-primary text-white text-center m-2 p-2">Product Table</h6>
+    <div class="m-2">
+        <table class="table table-sm table-striped table-bordered">
+            <tbody>
+                <tr><th>Name</th><td>@Model?.Name</td></tr>
+                <tr><th>Price</th><td>@Model?.Price.ToString("c")</td></tr>
+                <tr><th>Category ID</th><td>@Model?.CategoryId</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

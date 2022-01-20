@@ -1,0 +1,44 @@
+﻿<div class="form-group p-2 bg-@Theme @TextColor()">
+    <label for="select-@Title">@Title</label>
+    <select name="select-@Title" class="form-control" 
+            @onchange="HandleSelect" value="@SelectedValue">
+        <option value="" disabled selected>Select @Title</option>
+        @foreach (string val in Values) {
+            <option value="@val" selected="@(val == SelectedValue)">
+                @val
+            </option>
+        }
+    </select>
+</div>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<string> Values { get; set; } = Enumerable.Empty<string>();
+
+    [Parameter]
+    public string? SelectedValue { get; set; } = "ph";
+
+    [Parameter]
+    public string Title { get; set; } = "Placeholder";
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? Attrs { get; set; }
+
+    [Parameter]
+    public EventCallback<string> SelectedValueChanged { get; set; }
+
+    public async Task HandleSelect(ChangeEventArgs e) {
+        SelectedValue = e.Value as string;
+        if (SelectedValue == "Sales") {
+            throw new Exception("Sales cannot be selected");
+        }
+        await SelectedValueChanged.InvokeAsync(SelectedValue);
+    }
+
+    [CascadingParameter(Name = "BgTheme")]
+    public string Theme { get; set; } = "";
+
+    public string TextColor() => String.IsNullOrEmpty(Theme) 
+        ? "text-dark" : "text-light";
+}

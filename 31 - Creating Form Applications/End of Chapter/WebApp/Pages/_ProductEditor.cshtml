@@ -1,0 +1,68 @@
+﻿@model ProductViewModel
+
+<partial name="_Validation" />
+
+<h5 class="bg-@Model?.Theme text-white text-center p-2">@Model?.Action</h5> 
+
+<form asp-page="@Model?.Action" method="post">
+    <div class="form-group">
+        <label asp-for="Product.ProductId"></label>
+        <input class="form-control" asp-for="Product.ProductId" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Name"></label>
+        <div>
+            <span asp-validation-for="Product.Name" class="text-danger"></span>
+        </div>   
+        <input class="form-control" asp-for="Product.Name" 
+               readonly="@Model?.ReadOnly" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Price"></label>
+        <div>
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>  
+        <input class="form-control" asp-for="Product.Price" 
+               readonly="@Model?.ReadOnly" /> 
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Product.CategoryId">Category</label>
+        <div>
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+        <select asp-for="Product.CategoryId" class="form-control"
+                disabled="@Model?.ReadOnly"
+                asp-items="@(new SelectList(Model?.Categories, "CategoryId", "Name"))">
+            <option value="-1">Create New Category...</option>
+            <option value="" disabled selected>Choose a Category</option>
+        </select>
+    </div>
+    <partial name="_CategoryEditor" for="Product" />
+    <div class="form-group">
+        <label asp-for="Product.SupplierId">
+            Supplier
+            @if (Model?.ReadOnly == false) { 
+                <input type="hidden" name="returnPage" value="@Model?.Action" />
+                <button class="btn btn-sm btn-outline-primary ml-3 my-1" 
+                        asp-page="SupplierBreakOut" formmethod="get" formnovalidate>
+                    Create New Supplier
+                </button>
+            }
+        </label>
+        <div>
+            <span asp-validation-for="Product.SupplierId" class="text-danger"></span>
+        </div>
+        <select asp-for="Product.SupplierId" class="form-control"
+                disabled="@Model?.ReadOnly"
+                asp-items="@(new SelectList(Model?.Suppliers,
+                    "SupplierId", "Name"))">
+            <option value="" disabled selected>Choose a Supplier</option>
+        </select>
+    </div>
+
+    @if (Model?.ShowAction == true) {
+        <button class="btn btn-@Model.Theme mt-2" type="submit">@Model.Action</button>
+    }
+    <a class="btn btn-secondary mt-2" asp-page="Index">Back</a>
+</form>

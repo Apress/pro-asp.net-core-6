@@ -1,0 +1,23 @@
+﻿<TableTemplate RowType="Person" RowData="People"
+        Highlight="@(p => p.Location?.City)" SortDirection="@(p => p.Surname)">
+    <Header>
+        <tr><th>ID</th><th>Name</th><th>Dept</th><th>Location</th></tr>
+    </Header>
+    <RowTemplate Context="p">
+        <td>@p.PersonId</td>
+        <td>@p.Surname, @p.Firstname</td>
+        <td>@p.Department?.Name</td>
+        <td>@p.Location?.City, @p.Location?.State</td>
+    </RowTemplate>
+</TableTemplate>
+
+
+@code {
+
+    [Inject]
+    public DataContext? Context { get; set; }
+
+    public IEnumerable<Person>? People => Context?.People
+            .Include(p => p.Department)
+            .Include(p => p.Location);
+}

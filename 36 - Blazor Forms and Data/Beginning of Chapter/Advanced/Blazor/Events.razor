@@ -1,0 +1,41 @@
+﻿<form action="/pages/blazor" method="get">
+    @for (int i = 0; i < ElementCount; i++) {
+        int local = i;
+        <div class="m-2 p-2 border">
+            <button class="btn btn-primary" 
+                @onclick="@(() => IncrementCounter(local))" 
+                @onclick:preventDefault="EnableEventParams">
+                    Increment Counter #@(i + 1)
+            </button>
+            <button class="btn btn-info" @onclick="@(() => Counters.Remove(local))">
+                    Reset
+            </button>
+            <span class="p-2">Counter Value: @GetCounter(i)</span>
+        </div>
+    }
+</form>
+
+<div class="m-2" @onclick="@(() => IncrementCounter(1))">
+    <button class="btn btn-primary" @onclick="@(() => IncrementCounter(0))" 
+            @onclick:stopPropagation="EnableEventParams">Propagation Test</button>
+</div>
+
+<div class="form-check m-2">
+    <input class="form-check-input" type="checkbox" 
+           @onchange="@(() => EnableEventParams = !EnableEventParams)" />
+    <label class="form-check-label">Enable Event Parameters</label>
+</div>
+
+@code {
+    public int ElementCount { get; set; } = 4;
+
+    public Dictionary<int, int> Counters { get; } = new Dictionary<int, int>();
+
+    public int GetCounter(int index) =>
+        Counters.ContainsKey(index) ? Counters[index] : 0;
+
+    public void IncrementCounter(int index)  =>
+        Counters[index] = GetCounter(index) + 1;
+
+    public bool EnableEventParams { get; set; } = false;
+}

@@ -1,0 +1,28 @@
+﻿@model Product
+@{  
+    Layout = "_Layout";
+    ViewBag.Title = ViewBag.Title ?? "Product Table";
+}
+
+@section Header {
+    Product Information
+}
+
+<tr><th>Name</th><td>@Model?.Name</td></tr>
+<tr>
+    <th>Price</th>
+    <td>@Model?.Price.ToString("c")</td>
+</tr>
+<tr><th>Category ID</th><td>@Model?.CategoryId</td></tr>
+        
+@section Footer {
+    @(((Model?.Price / ViewBag.AveragePrice) 
+        * 100).ToString("F2"))% of average price
+}
+
+@section Summary {
+    <div class="bg-info text-white m-2 p-2">
+        <vc:city-summary theme-name="secondary" />
+        <vc:page-size />
+    </div>
+}

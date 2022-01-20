@@ -1,0 +1,48 @@
+﻿@page "/forms"
+@page "/forms/list"
+@layout EmptyLayout
+
+<h5 class="bg-primary text-white text-center p-2">People</h5>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Dept</th><th>Location</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if  (People.Count() == 0) {
+            <tr><th colspan="5" class="p-4 text-center">Loading Data...</th></tr>
+        } else {
+            @foreach (Person p in People) {
+                <tr>
+                    <td>@p.PersonId</td>
+                    <td>@p.Surname, @p.Firstname</td>
+                    <td>@p.Department?.Name</td>
+                    <td>@p.Location?.City</td>
+                    <td>
+                        <NavLink class="btn btn-sm btn-warning" 
+                             href="@GetEditUrl(p.PersonId)">
+                            Edit
+                        </NavLink>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+
+    [Inject]
+    public DataContext? Context { get; set; }
+
+    public IEnumerable<Person> People { get; set; } = Enumerable.Empty<Person>();
+
+    protected override void OnInitialized() {
+        People = Context?.People?.Include(p => p.Department).Include(p => p.Location) 
+            ?? Enumerable.Empty<Person>();
+    }
+
+    string GetEditUrl(long id) => $"/forms/edit/{id}";
+}

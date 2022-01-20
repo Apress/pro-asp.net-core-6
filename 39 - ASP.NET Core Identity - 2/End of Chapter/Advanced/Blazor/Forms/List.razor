@@ -1,0 +1,83 @@
+﻿@page "/forms"
+@page "/forms/list"
+@layout EmptyLayout
+@inherits OwningComponentBase<DataContext>
+
+<h5 class="bg-primary text-white text-center p-2">People</h5>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Dept</th><th>Location</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (People.Count() == 0) {
+            <tr><th colspan="5" class="p-4 text-center">Loading Data...</th></tr>
+        } else {
+            @foreach (Person p in People) {
+                <tr>
+                    <td>@p.PersonId</td>
+                    <td>@p.Surname, @p.Firstname</td>
+                    <td>@p.Department?.Name</td>
+                    <td>@p.Location?.City</td>
+                    <td class="text-center">
+                        <NavLink class="btn btn-sm btn-info" 
+                               href="@GetDetailsUrl(p.PersonId)">
+                            Details
+                        </NavLink>
+                        <NavLink class="btn btn-sm btn-warning" 
+                               href="@GetEditUrl(p.PersonId)">
+                            Edit
+                        </NavLink>
+                        <button class="btn btn-sm btn-danger" 
+                                @onclick="@(() => HandleDelete(p))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<NavLink class="btn btn-primary" href="/forms/create">Create</NavLink>
+
+@code {
+
+    //[Inject]
+    public DataContext? Context => Service;
+
+    public IEnumerable<Person> People { get; set; } = Enumerable.Empty<Person>();
+
+    protected async override Task OnInitializedAsync() {
+        await UpdateData();
+    }
+
+    private IQueryable<Person> Query => 
+        Context!.People.Include(p => p.Department).Include(p => p.Location);
+
+
+    private async Task UpdateData(IQueryable<Person>? query = null) => 
+        People = await (query ?? Query).ToListAsync<Person>();
+
+    public async Task SortWithQuery() {
+        await UpdateData(Query.OrderBy(p => p.Surname));
+    }
+
+    public void SortWithoutQuery() {
+        People = People.OrderBy(p => p.Firstname).ToList<Person>();
+    }
+
+    string GetEditUrl(long id) => $"/forms/edit/{id}";
+
+    string GetDetailsUrl(long id) => $"/forms/details/{id}";
+
+    public async Task HandleDelete(Person p) {
+        if (Context != null) {
+            Context.Remove(p);
+            await Context.SaveChangesAsync();
+            await UpdateData();
+        }
+    }
+}

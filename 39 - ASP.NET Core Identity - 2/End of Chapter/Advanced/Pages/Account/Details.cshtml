@@ -1,0 +1,33 @@
+﻿@page
+@model DetailsModel
+
+<table class="table table-sm table-bordered">
+    <tbody>
+        @if (Model.IdentityUser == null) {
+            <tr><th class="text-center">No User</th></tr>
+        } else {
+            <tr><th>Name</th><td>@Model.IdentityUser.UserName</td></tr>
+            <tr><th>Email</th><td>@Model.IdentityUser.Email</td></tr>
+        }
+    </tbody>    
+</table>
+
+@functions {
+
+    public class DetailsModel : PageModel {
+        private UserManager<IdentityUser> userManager;
+
+        public DetailsModel(UserManager<IdentityUser> manager) {
+            userManager = manager;
+        }
+
+        public IdentityUser? IdentityUser { get; set; }
+
+        public async Task OnGetAsync() {
+            if (User.Identity != null && User.Identity.IsAuthenticated) {
+                IdentityUser = await 
+                    userManager.FindByNameAsync(User.Identity.Name);
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿@page "/pages/create"
+@model CreateModel
+
+<div class="m-2">
+    <partial name="_ProductEditor" model="@Model.ViewModel" />
+</div>
+
+@functions {
+
+    public class CreateModel: EditorPageModel {
+
+        public CreateModel(DataContext dbContext): base(dbContext) {}
+
+        public void OnGet() {
+            Product p = TempData.ContainsKey("product") 
+                ? JsonSerializer.
+                    Deserialize<Product>((TempData["product"] as string)!)! 
+                : new Product();
+            ViewModel = ViewModelFactory.Create(p, Categories, Suppliers);
+        }
+
+        public async Task<IActionResult> OnPostAsync([FromForm]Product product) {
+            await CheckNewCategory(product);
+            if (ModelState.IsValid) {
+                product.ProductId = default;
+                product.Category = default;
+                product.Supplier = default;
+                DataContext.Products.Add(product);
+                await DataContext.SaveChangesAsync();
+                return RedirectToPage(nameof(Index));
+            }
+            ViewModel = ViewModelFactory.Create(product, Categories, Suppliers);
+            return Page();
+        }
+    }
+}

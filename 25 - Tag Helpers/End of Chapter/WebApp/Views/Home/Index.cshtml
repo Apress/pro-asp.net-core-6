@@ -1,0 +1,25 @@
+﻿@model Product
+@{  
+    Layout = "_SimpleLayout";
+}
+
+<div show-when-gt="500" for="Price">
+    <h5 class="bg-danger text-white text-center p-2">
+        Warning: Expensive Item
+    </h5>
+</div>
+
+<table class="table table-striped table-bordered table-sm">
+    <tablehead bg-color="dark">Product Summary</tablehead>    
+    <tbody>
+        <tr theme="primary">
+            <th>Name</th><td>@Model?.Name</td>
+        </tr>
+        <tr theme="secondary">
+            <th>Price</th><td>@Model?.Price.ToString("c")</td>
+        </tr>
+        <tr theme="info">
+            <th>Category</th><td>@Model?.CategoryId</td>
+        </tr>
+    </tbody>
+</table>

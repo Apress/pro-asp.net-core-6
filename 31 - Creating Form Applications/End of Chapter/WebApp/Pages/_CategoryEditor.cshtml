@@ -1,0 +1,29 @@
+﻿@model Product
+
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", () => {
+        function setVisibility(visible) {
+            document.getElementById("categoryGroup").hidden = !visible;
+            input = document.getElementById("categoryInput")
+            if (visible) {
+                input.removeAttribute("disabled");
+            } else {
+                input.setAttribute("disabled", "disabled");
+            }                
+        }
+        setVisibility(false);
+        document.querySelector("select[name='Product.CategoryId']")
+            .addEventListener("change", (event) => 
+                setVisibility(event.target.value === "-1")
+            );
+    });
+</script>
+
+<div class="form-group bg-info mt-2 p-1" id="categoryGroup">
+    @{ #pragma warning disable CS8602 } 
+    <label class="text-white" asp-for="Category.Name">
+        New Category Name
+    </label>
+    <input class="form-control" asp-for="Category.Name" value="" id="categoryInput" />
+    @{ #pragma warning restore CS8602 } 
+</div>

@@ -1,0 +1,15 @@
+﻿@{ Layout = "_SimpleLayout"; }
+
+@if (Model is string) {
+    @Model
+} else if (Model is IDictionary<string, string>) {
+    var dict = Model as IDictionary<string, string>;
+    <table class="table table-sm table-striped table-bordered">
+        <thead><tr><th>Name</th><th>Value</th></tr></thead>
+        <tbody>
+            @foreach (var kvp in dict ?? new Dictionary<string, string>()) {
+                <tr><td>@kvp.Key</td><td>@kvp.Value</td></tr>
+            }
+        </tbody>
+    </table>
+}

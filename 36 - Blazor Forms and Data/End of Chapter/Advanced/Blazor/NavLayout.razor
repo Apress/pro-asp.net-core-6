@@ -1,0 +1,56 @@
+﻿@inherits LayoutComponentBase
+@using Advanced.Services
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="d-grid gap-2">
+                @foreach (string key in NavLinks.Keys) {
+                    <MultiNavLink class="btn btn-outline-primary btn-block"
+                        href="@NavLinks[key]" ActiveClass="btn-primary text-white"
+                        DisabledClasses="btn btn-dark text-light btn-block disabled"
+                         @ref="Refs[key]">
+                            @key
+                    </MultiNavLink>
+                }
+            <button class="btn btn-secondary btn-block mt-5" @onclick="ToggleLinks">
+                Toggle Links
+            </button>
+            </div>
+        </div>
+        <div class="col">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Inject]
+    public ToggleService? Toggler { get; set; }
+
+    [Inject]
+    public IJSRuntime? JSRuntime { get; set; }
+
+    public Dictionary<string, string[]> NavLinks
+        = new Dictionary<string, string[]> {
+            {"People", new string[] {"/people", "/" } },
+            {"Departments", new string[] {"/depts", "/departments" } },
+            {"Details", new string[] { "/person" } }
+        };
+
+    public Dictionary<string, MultiNavLink> Refs 
+        = new Dictionary<string, MultiNavLink>();
+
+    protected async override Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender && Toggler != null) {
+            Toggler.EnrolComponents(Refs.Values);
+            await JSRuntime!.InvokeVoidAsync("createToggleButton", 
+                DotNetObjectReference.Create(Toggler));
+        }
+    }
+
+    public void ToggleLinks() {
+        Toggler?.ToggleComponents();
+    }
+}

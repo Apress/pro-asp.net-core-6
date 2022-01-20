@@ -1,0 +1,97 @@
+﻿@page "/forms/edit/{id:long}"
+@page "/forms/create"
+@layout EmptyLayout
+@inherits OwningComponentBase<DataContext>
+
+<link href="/blazorValidation.css" rel="stylesheet" />
+
+<h4 class="bg-@Theme text-center text-white p-2">@Mode</h4>
+
+<EditForm Model="PersonData" OnValidSubmit="HandleValidSubmit" >
+    <DataAnnotationsValidator />
+    <DeptStateValidator DepartmentId="2" State="CA" />
+    @if (Mode == "Edit") {
+        <div class="form-group">
+            <label>ID</label>
+            <InputNumber class="form-control"
+                @bind-Value="PersonData.PersonId" readonly />
+        </div>
+    }
+    <div class="form-group">
+        <label>Firstname</label>
+        <ValidationMessage For="@(() => PersonData.Firstname)" />
+        <InputText class="form-control" @bind-Value="PersonData.Firstname" />
+    </div>
+    <div class="form-group">
+        <label>Surname</label>
+        <ValidationMessage For="@(() => PersonData.Surname)" />
+        <InputText class="form-control" @bind-Value="PersonData.Surname" />
+    </div>
+    <div class="form-group">
+        <label>Deptartment</label>
+        <ValidationMessage For="@(() => PersonData.DepartmentId)" />
+        <CustomSelect TValue="long" Values="Departments" 
+                        Parser="@((string str) => long.Parse(str))"
+                        @bind-Value="PersonData.DepartmentId">
+            <option selected disabled value="0">Choose a Department</option>
+        </CustomSelect>
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <ValidationMessage For="@(() => PersonData.LocationId)" />
+        <CustomSelect TValue="long" Values="Locations" 
+                        Parser="@((string str) => long.Parse(str))"
+                        @bind-Value="PersonData.LocationId">
+            <option selected disabled value="0">Choose a Location</option>
+        </CustomSelect>
+    </div>
+    <div class="text-center">
+        <ValidButton type="submit" BtnTheme="@Theme">Save</ValidButton>
+        <NavLink class="btn btn-secondary mt-2" href="/forms">Back</NavLink>
+    </div>
+</EditForm>
+
+@code {
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    //[Inject]
+    DataContext? Context => Service;
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Person PersonData { get; set; } = new();
+
+    public IDictionary<string, long> Departments { get; set; } 
+        = new Dictionary<string, long>();
+
+    public IDictionary<string, long> Locations { get; set; } 
+        = new Dictionary<string, long>();
+
+    protected async override Task OnParametersSetAsync() {
+        if (Context != null) {
+            if (Mode == "Edit") {
+                PersonData = await Context.People.FindAsync(Id) ?? new Person();
+            }
+            Departments = await Context.Departments
+                .ToDictionaryAsync(d => d.Name, d => d.Departmentid);
+            Locations = await Context.Locations
+                .ToDictionaryAsync(l => $"{l.City}, {l.State}", l => l.LocationId);
+        }
+    }
+
+    public string Theme => Id == 0 ? "primary" : "warning";
+    public string Mode => Id == 0 ? "Create" : "Edit";
+
+    public async Task HandleValidSubmit()  {
+        if (Context != null) {
+            if (Mode == "Create") {
+                Context.Add(PersonData);
+            }
+            await Context.SaveChangesAsync();
+            NavManager?.NavigateTo("/forms");
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿@model PeopleListViewModel
+
+<h4 class="bg-primary text-white text-center p-2">People</h4>
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Dept</th><th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Person p in Model?.People ?? Enumerable.Empty<Person>()) {
+            <tr class="@Model?.GetClass(p.Location?.City)">
+                <td>@p.PersonId</td>
+                <td>@p.Surname, @p.Firstname</td>
+                <td>@p.Department?.Name</td>
+                <td>@p.Location?.City, @p.Location?.State</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="selectedCity">City</label>
+        <select name="selectedCity" class="form-control">
+            <option disabled selected>Select City</option>
+            @foreach (string city in Model?.Cities ?? Enumerable.Empty<string>()) {
+                <option selected="@(city == Model?.SelectedCity)">
+                    @city
+                </option>
+            }
+        </select>
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Select</button>
+</form>

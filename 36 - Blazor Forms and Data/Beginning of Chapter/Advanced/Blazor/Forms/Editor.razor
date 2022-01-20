@@ -1,0 +1,31 @@
+﻿@page "/forms/edit/{id:long}"
+@layout EmptyLayout
+
+<h4 class="bg-primary text-center text-white p-2">Edit</h4>
+
+<FormSpy PersonData="PersonData">
+    <h4 class="text-center">Form Placeholder</h4>
+    <div class="text-center">
+        <NavLink class="btn btn-secondary mt-2" href="/forms">Back</NavLink>
+    </div>
+</FormSpy>
+
+@code {
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Inject]
+    DataContext? Context { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Person PersonData { get; set; } = new();
+
+    protected async override Task OnParametersSetAsync() {
+        if (Context != null) {
+            PersonData = await Context.People.FindAsync(Id) ?? new Person();
+        }
+    }
+}

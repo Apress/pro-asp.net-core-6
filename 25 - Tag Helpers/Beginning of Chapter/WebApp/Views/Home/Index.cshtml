@@ -1,0 +1,17 @@
+﻿@model Product
+@{  
+    Layout = "_SimpleLayout";
+}
+
+<table class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th colspan="2">Product Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><th>Name</th><td>@Model?.Name</td></tr>
+        <tr><th>Price</th><td>@Model?.Price.ToString("c")</td></tr>
+        <tr><th>Category ID</th><td>@Model?.CategoryId</td></tr>
+    </tbody>
+</table>

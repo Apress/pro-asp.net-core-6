@@ -1,0 +1,15 @@
+﻿version: "3"
+services:
+    sportsstore:
+        build: .
+        ports:
+            - "5000:5000"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+        depends_on:
+            - sqlserver
+    sqlserver:
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "MyDatabaseSecret123"
+            ACCEPT_EULA: "Y"

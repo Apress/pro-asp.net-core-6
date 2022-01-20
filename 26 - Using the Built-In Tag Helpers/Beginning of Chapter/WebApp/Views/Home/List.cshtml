@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+@{ Layout = "_SimpleLayout"; }
+
+<h6 class="bg-secondary text-white text-center m-2 p-2">Products</h6>
+<div class="m-2">
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th><th>Price</th>
+                <th>Category</th><th>Supplier</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product p in Model ?? Enumerable.Empty<Product>()) {
+                <partial name="_RowPartial" model="p" />
+            }
+        </tbody>
+    </table>
+</div>

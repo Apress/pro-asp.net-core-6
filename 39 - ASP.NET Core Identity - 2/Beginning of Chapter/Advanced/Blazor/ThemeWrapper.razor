@@ -1,0 +1,15 @@
+﻿<div class="p-2 bg-@Theme border text-white">
+    <h5 class="text-center">@Title</h5>
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public string? Theme { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,27 @@
+﻿@page "/pages/jsform"
+
+<script type="text/javascript">
+    async function sendRequest() {
+        const token = document.cookie
+            .replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+        let form = new FormData();
+        form.append("name", "Paddle");
+        form.append("price", 100);
+        form.append("categoryId", 1);
+        form.append("supplierId", 1);
+
+        let response = await fetch("@Url.Page("FormHandler")", {
+            method: "POST",
+            headers: { "X-XSRF-TOKEN": token },
+            body: form
+        });        
+        document.getElementById("content").innerHTML = await response.text();
+    }
+
+    document.addEventListener("DOMContentLoaded",
+        () => document.getElementById("submit").onclick = sendRequest);
+</script>
+
+<button class="btn btn-primary m-2" id="submit">Submit JavaScript Form</button>
+<div id="content"></div>

@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found>
+        <AuthorizeRouteView RouteData="@context" DefaultLayout="typeof(NavLayout)">
+           <NotAuthorized Context="authContext">
+                <h4 class="bg-danger text-white text-center p-2">Not Authorized </h4>
+                <div class="text-center">
+                    You may need to log in as a different user
+                </div>
+            </NotAuthorized>
+        </AuthorizeRouteView>
+    </Found>
+    <NotFound>
+        <h4 class="bg-danger text-white text-center p-2">
+            Not Matching Route Found
+        </h4>
+    </NotFound>
+</Router>

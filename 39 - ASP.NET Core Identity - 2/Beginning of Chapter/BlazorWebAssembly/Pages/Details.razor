@@ -1,0 +1,53 @@
+﻿@page "/forms/details/{id:long}"
+
+<h4 class="bg-info text-center text-white p-2">Details (WebAssembly)</h4>
+
+<div class="form-group">
+    <label>ID</label>
+    <input class="form-control" value="@PersonData.PersonId" disabled />
+</div>
+<div class="form-group">
+    <label>Firstname</label>
+    <input class="form-control" value="@PersonData.Firstname" disabled />
+</div>
+<div class="form-group">
+    <label>Surname</label>
+    <input class="form-control" value="@PersonData.Surname" disabled />
+</div>
+<div class="form-group">
+    <label>Department</label>
+    <input class="form-control" value="@PersonData.Department?.Name" disabled />
+</div>
+<div class="form-group">
+    <label>Location</label>
+    <input class="form-control" 
+           value="@($"{PersonData.Location?.City}, {PersonData.Location?.State}")" 
+           disabled />
+</div>
+<div class="text-center p-2">
+    <NavLink class="btn btn-info" href="@EditUrl">Edit</NavLink>
+    <NavLink class="btn btn-secondary" href="forms">Back</NavLink>
+</div>
+
+@code {
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Inject]
+    public HttpClient? Http { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Person PersonData { get; set; } = new Person();
+
+    protected async override Task OnParametersSetAsync() {
+        if (Http != null) {
+            PersonData = await Http.GetFromJsonAsync<Person>($"/api/people/{Id}")
+                ?? new();
+        }
+    }
+
+    public string EditUrl => $"forms/edit/{Id}";
+}

@@ -1,0 +1,42 @@
+﻿@page "/pages/message"
+@model MessageModel
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using WebApp.Filters
+@using Microsoft.AspNetCore.Mvc.Filters
+
+@if (Model.Message is string) {
+    @Model.Message
+} else if (Model.Message is IDictionary<string, string>) {
+    var dict = Model.Message as IDictionary<string, string>;
+    <table class="table table-sm table-striped table-bordered">
+        <thead><tr><th>Name</th><th>Value</th></tr></thead>
+        <tbody>
+            @foreach (var kvp in dict ?? new Dictionary<string, string>()) {
+                <tr><td>@kvp.Key</td><td>@kvp.Value</td></tr>
+            }
+        </tbody>
+    </table>
+}
+
+@functions {
+
+    [RequireHttps]
+    //[SimpleCache]
+    //[ChangePageArgs]
+    public class MessageModel : PageModel {
+
+        public object Message { get; set; } = 
+            $"{DateTime.Now.ToLongTimeString()}: This is the Message Razor Page";
+
+        public void OnGet(string message1, string message2) {
+            Message = $"{message1}, {message2}";
+        }
+
+        public override void OnPageHandlerExecuting(
+                PageHandlerExecutingContext context) {
+            if (context.HandlerArguments.ContainsKey("message1")) {
+                context.HandlerArguments["message1"] = "New message";
+            }
+        }
+    }
+}

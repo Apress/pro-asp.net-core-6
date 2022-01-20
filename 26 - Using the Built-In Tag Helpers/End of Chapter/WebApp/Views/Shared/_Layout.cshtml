@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>    
+    <div class="m-2">
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="bg-primary text-white text-center" colspan="2">
+                        @RenderSection("Header", false)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @RenderBody()
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="bg-primary text-white text-center" colspan="2">
+                        @RenderSection("Footer", false)
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    @if (IsSectionDefined("Summary")) {
+        @RenderSection("Summary", false)
+    } else { 
+        <div class="bg-info text-center text-white m-2 p-2">
+            This is the default summary
+        </div>
+    }
+</body>
+</html>

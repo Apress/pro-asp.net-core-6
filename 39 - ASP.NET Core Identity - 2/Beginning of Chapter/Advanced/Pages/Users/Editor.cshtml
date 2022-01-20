@@ -1,0 +1,76 @@
+﻿@page "{id}"
+@model EditorModel
+
+<h5 class="bg-warning text-white text-center p-2">Edit User</h5>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label>ID</label>
+        <input name="Id" class="form-control" value="@Model.Id" disabled />
+        <input name="Id" type="hidden" value="@Model.Id" />
+    </div>
+    <div class="form-group">
+        <label>User Name</label>
+        <input name="UserName" class="form-control" value="@Model.UserName" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input name="Email" class="form-control" value="@Model.Email" />
+    </div>
+    <div class="form-group">
+        <label>New Password</label>
+        <input name="Password" class="form-control" value="@Model.Password" />
+    </div>
+    <div class="py-2">
+        <button type="submit" class="btn btn-warning">Submit</button>
+        <a class="btn btn-secondary" asp-page="list">Back</a>
+    </div>
+</form>
+
+@functions {
+
+    public class EditorModel : AdminPageModel {
+        public UserManager<IdentityUser> UserManager;
+
+        public EditorModel(UserManager<IdentityUser> usrManager) {
+            UserManager = usrManager;
+        }
+
+        [BindProperty]
+        public string Id { get; set; } = string.Empty;
+
+        [BindProperty]
+        public string UserName { get; set; } = string.Empty;
+
+        [BindProperty][EmailAddress]
+        public string Email { get; set; } = string.Empty;
+
+        [BindProperty]
+        public string? Password { get; set; }
+
+        public async Task OnGetAsync(string id) {
+            IdentityUser user = await UserManager.FindByIdAsync(id);
+            Id = user.Id; UserName = user.UserName; Email = user.Email;
+        }
+
+        public async Task<IActionResult> OnPostAsync() {
+            if (ModelState.IsValid) {
+                IdentityUser user = await UserManager.FindByIdAsync(Id);
+                user.UserName = UserName;
+                user.Email = Email;
+                IdentityResult result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded && !String.IsNullOrEmpty(Password)) {
+                    await UserManager.RemovePasswordAsync(user);
+                    result = await UserManager.AddPasswordAsync(user, Password);
+                }
+                if (result.Succeeded) {
+                    return RedirectToPage("List");
+                }
+                foreach (IdentityError err in result.Errors) {
+                    ModelState.AddModelError("", err.Description);
+                }
+            }
+            return Page();
+        }
+    }
+}

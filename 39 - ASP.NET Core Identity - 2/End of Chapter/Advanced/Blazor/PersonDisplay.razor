@@ -1,0 +1,49 @@
+﻿@page "/person"
+@page "/person/{id:long}"
+
+@if (Person == null) {
+    <h5 class="bg-info text-white text-center p-2">Loading...</h5>
+} else {
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr><th>Id</th><td>@Person.PersonId</td></tr>
+            <tr @ref="RowReference"><th>Surname</th><td>@Person.Surname</td></tr>
+            <tr><th>Firstname</th><td>@Person.Firstname</td></tr>
+        </tbody>
+    </table>
+}
+
+<button class="btn btn-outline-primary" @onclick="@HandleClick">
+    Invoke JS Function
+</button>
+
+@code {
+
+    [Inject]
+    public DataContext? Context { get; set; }
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Inject]
+    public IJSRuntime? JSRuntime { get; set; }
+
+    [Parameter]
+    public long Id { get; set; } = 0;
+
+    public Person? Person { get; set; }
+
+    protected async override Task OnParametersSetAsync() {
+        //await Task.Delay(1000);
+        if (Context != null) {
+            Person = await Context.People.FirstOrDefaultAsync(p => p.PersonId == Id) 
+                ?? new Person();
+        }
+    }
+
+    public ElementReference RowReference { get; set; }
+
+    public async Task HandleClick() {
+        await JSRuntime!.InvokeVoidAsync("addTableRows", 2, RowReference);
+    }
+}

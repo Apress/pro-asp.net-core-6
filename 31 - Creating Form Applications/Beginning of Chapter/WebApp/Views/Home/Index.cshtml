@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Product>
+@{ Layout = "_SimpleLayout"; }
+
+<h4 class="bg-primary text-white text-center p-2">Products</h4>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Price</th><th>Category</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product p in Model ?? Enumerable.Empty<Product>()) {
+            <tr>
+                <td>@p.ProductId</td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Category?.Name</td>
+                <td class="text-center">
+                    <a asp-action="Details" asp-route-id="@p.ProductId"
+                       class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@p.ProductId"
+                       class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@p.ProductId"
+                       class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">Create</a>

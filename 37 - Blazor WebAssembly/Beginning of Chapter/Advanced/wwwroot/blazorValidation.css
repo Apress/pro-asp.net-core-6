@@ -1,0 +1,7 @@
+﻿.validation-errors {
+    background-color: rgb(220, 53, 69); color: white; padding: 8px; 
+    text-align: center; font-size: 16px; font-weight: 500;
+}
+div.validation-message { color: rgb(220, 53, 69); font-weight: 500 }
+.modified.valid { border: solid 3px rgb(40, 167, 69); }
+.modified.invalid { border: solid 3px rgb(220, 53, 69); }

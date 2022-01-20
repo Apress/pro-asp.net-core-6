@@ -1,0 +1,77 @@
+﻿@page "/pages/form/{id:long?}"
+@model FormHandlerModel
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@using WebApp.Validation
+
+<partial name="_Validation" />
+
+<div class="m-2">
+    <h5 class="bg-primary text-white text-center p-2">HTML Form</h5>
+    <form asp-page="FormHandler" method="post" id="htmlform">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label>Name</label>
+            <div>
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>   
+            <input class="form-control" asp-for="Product.Name" />
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <div>
+                 <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>   
+            <input class="form-control" asp-for="Product.Price" />
+        </div>
+        <div class="form-group">
+            <label>CategoryId</label>
+            <div>
+                <span asp-validation-for="Product.CategoryId" class="text-danger">
+               </span>
+           </div>   
+            <input class="form-control" asp-for="Product.CategoryId"  />
+        </div>
+        <div class="form-group">
+            <label>SupplierId</label>
+            <div>
+                <span asp-validation-for="Product.SupplierId" class="text-danger">
+                </span>
+            </div>   
+            <input class="form-control" asp-for="Product.SupplierId"  />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+</div>
+
+@functions {
+
+    public class FormHandlerModel : PageModel {
+        private DataContext context;
+
+        public FormHandlerModel(DataContext dbContext) {
+            context = dbContext;
+        }
+
+        [BindProperty]
+        public Product Product { get; set; } = new();
+
+        public async Task OnGetAsync(long id = 1) {
+            Product = await context.Products.FirstAsync(p => p.ProductId == id);
+        }
+
+        public IActionResult OnPost() {
+            if (ModelState.IsValid) {
+                TempData["name"] = Product.Name;
+                TempData["price"] = Product.Price.ToString();
+                TempData["categoryId"] = Product.CategoryId.ToString();
+                TempData["supplierId"] = Product.SupplierId.ToString();
+                return RedirectToPage("FormResults");
+            } else {
+                ModelState.PromotePropertyErrors(nameof(Product));
+                return Page();
+            }
+        }
+    }
+}

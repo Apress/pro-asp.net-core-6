@@ -1,0 +1,21 @@
+﻿@page "/pages/details/{id}"
+@model DetailsModel
+
+<div class="m-2">
+    <partial name="_ProductEditor" model="@Model.ViewModel" />
+</div>
+
+@functions {
+
+    public class DetailsModel: EditorPageModel {
+
+        public DetailsModel(DataContext dbContext): base(dbContext) {}
+
+        public async Task OnGetAsync(long id) {
+            Product? p = await DataContext.Products.
+                Include(p => p.Category).Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.ProductId == id);
+            ViewModel = ViewModelFactory.Details(p ?? new Product());
+        }
+    }
+}

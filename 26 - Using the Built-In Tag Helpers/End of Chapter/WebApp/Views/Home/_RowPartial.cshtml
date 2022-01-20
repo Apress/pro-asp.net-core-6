@@ -1,0 +1,14 @@
+﻿@model Product
+
+<tr>
+    <td>@Model?.Name</td>
+    <td>@Model?.Price.ToString("c")</td>
+    <td>@Model?.CategoryId</td>
+    <td>@Model?.SupplierId</td>
+    <td>
+        <a asp-action="index" asp-controller="home" asp-route-id="@Model?.ProductId" 
+                class="btn btn-sm btn-info text-white">
+            Select
+        </a>
+    </td>
+</tr>

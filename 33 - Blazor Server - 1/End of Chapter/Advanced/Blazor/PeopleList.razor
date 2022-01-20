@@ -1,0 +1,45 @@
+﻿<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Dept</th><th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Person p in People ?? Enumerable.Empty<Person>()) {
+            <tr class="@GetClass(p?.Location?.City)">
+                <td>@p?.PersonId</td>
+                <td>@p?.Surname, @p?.Firstname</td>
+                <td>@p?.Department?.Name</td>
+                <td>@p?.Location?.City, @p?.Location?.State</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="form-group">
+    <label for="city">City</label>
+    <select name="city" class="form-control" @bind="SelectedCity">
+        <option disabled selected value="">Select City</option>
+        @foreach (string city in Cities ?? Enumerable.Empty<string>()) {
+            <option value="@city" selected="@(city == SelectedCity)">
+                @city
+            </option>
+        }
+    </select>
+</div>
+
+@code {
+
+    [Inject]
+    public DataContext? Context { get; set; }
+
+    public IEnumerable<Person>? People =>
+        Context?.People.Include(p => p.Department).Include(p => p.Location);
+
+    public IEnumerable<string>? Cities => Context?.Locations.Select(l => l.City);
+
+    public string SelectedCity { get; set; } = string.Empty;
+
+    public string GetClass(string? city) =>
+        SelectedCity == city ? "bg-info text-white" : "";
+}

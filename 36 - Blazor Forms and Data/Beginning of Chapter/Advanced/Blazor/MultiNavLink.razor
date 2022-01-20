@@ -1,0 +1,79 @@
+﻿<a class="@ComputedClass" @onclick="HandleClick"  href="">
+    @if (Enabled) {  
+        @ChildContent 
+    } else { 
+        @("Disabled") 
+    }
+</a>
+
+@code {
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Parameter]
+    public IEnumerable<string> Href { get; set; } = Enumerable.Empty<string>();
+
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ActiveClass { get; set; } = string.Empty;
+
+    [Parameter]
+    public string DisabledClasses { get; set; } = string.Empty;
+
+    [Parameter]
+    public NavLinkMatch? Match { get; set; }
+
+    public NavLinkMatch ComputedMatch { get =>
+            Match ?? (Href.Count() == 1 ? NavLinkMatch.Prefix : NavLinkMatch.All); }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public string ComputedClass { get; set; } = string.Empty;
+
+
+    public void HandleClick() {
+        NavManager?.NavigateTo(Href.First());
+    }
+
+    private void CheckMatch(string currentUrl) {
+        string path = NavManager!.ToBaseRelativePath(currentUrl);
+        path = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+        bool match = Href.Any(href => ComputedMatch == NavLinkMatch.All 
+                ? path == href : path.StartsWith(href));
+        if (!Enabled) {
+            ComputedClass = DisabledClasses;
+        } else {
+            ComputedClass = match ? $"{Class} {ActiveClass}" : Class;
+        }
+    }
+
+    protected override void OnParametersSet() {
+        ComputedClass = Class;
+        NavManager!.LocationChanged += (sender, arg) => CheckMatch(arg.Location);
+        Href = Href.Select(h => h.StartsWith("/") ? h.Substring(1) : h);
+        CheckMatch(NavManager!.Uri);
+    }
+
+    private bool Enabled { get; set; } = true;
+
+    public void SetEnabled(bool enabled) {
+        InvokeAsync(() => {
+            Enabled = enabled;
+            CheckMatch(NavManager!.Uri);
+            StateHasChanged();
+        });
+    }
+
+    [JSInvokable]
+    public static void ToggleEnabled() => ToggleEvent?.Invoke(null, new EventArgs());
+
+    private static event EventHandler? ToggleEvent;
+
+    protected override void OnInitialized() {
+        ToggleEvent += (sender, args) => SetEnabled(!Enabled);
+    }
+}

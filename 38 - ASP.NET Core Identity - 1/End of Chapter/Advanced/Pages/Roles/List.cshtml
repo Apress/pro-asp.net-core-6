@@ -1,0 +1,64 @@
+﻿@page
+@model ListModel
+
+<table class="table table-sm table-bordered">
+    <tr><th>ID</th><th>Name</th><th>Members</th><th></th></tr>
+    @if (Model.Roles.Count() == 0) {
+        <tr><td colspan="4" class="text-center">No Roles</td></tr>
+    } else {
+        foreach (IdentityRole role in Model.Roles) {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+                <td>@(await Model.GetMembersString(role.Name))</td>
+                <td class="text-center">
+                    <form asp-page="List" method="post">
+                        <input type="hidden" name="Id" value="@role.Id" />
+                        <a class="btn btn-sm btn-warning" asp-page="Editor" 
+                            asp-route-id="@role.Id" asp-route-mode="edit">Edit</a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<a class="btn btn-primary" asp-page="create">Create</a>
+
+@functions {
+
+    public class ListModel : AdminPageModel {
+        public UserManager<IdentityUser> UserManager;
+        public RoleManager<IdentityRole> RoleManager;
+
+        public ListModel(UserManager<IdentityUser> userManager,
+                RoleManager<IdentityRole> roleManager) {
+            UserManager = userManager;
+            RoleManager = roleManager;
+        }
+
+        public IEnumerable<IdentityRole> Roles { get; set; }
+            = Enumerable.Empty<IdentityRole>();
+
+        public void OnGet() {
+            Roles = RoleManager.Roles;
+        }
+
+        public async Task<string> GetMembersString(string role) {
+            IEnumerable<IdentityUser> users 
+                = (await UserManager.GetUsersInRoleAsync(role));
+            string result = users.Count() == 0 
+                ? "No members" 
+                : string.Join(", ", users.Take(3).Select(u => u.UserName).ToArray());
+            return users.Count() > 3 ? $"{result}, (plus others)" : result;
+        }
+
+        public async Task<IActionResult> OnPostAsync(string id) {
+            IdentityRole role = await RoleManager.FindByIdAsync(id);
+            await RoleManager.DeleteAsync(role);
+            return RedirectToPage();
+        }
+    }
+}
