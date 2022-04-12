@@ -1,6 +1,6 @@
 # Errata for *Pro ASP.NET Core 6*
 
-**Chapter 15**
+**Chapter 5**
 
 On Page 83, when describing null state analysis, I wrote:
 
