@@ -1,5 +1,9 @@
 # Errata for *Pro ASP.NET Core 6*
 
+This file contains errors that are likely to prevent the code examples from working as described in ths book. See [this](typos.md) file for small mistakes that I intend to correct in the next edition.
+
+---
+
 **Chapter 5**
 
 On Page 83, when describing null state analysis, I wrote:
