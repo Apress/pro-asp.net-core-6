@@ -121,7 +121,14 @@ On page 233, the text that describes Listing 9-19 refers to the `ConfigureServic
 
 **Chapter 11**
 
-The sentence that starts like this:
+On page 272, the text that describes Listing 1-8 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications.
+
+(Thanks to Sam Miller for reporting this problem)
+
+
+---
+
+On page 273, the  sentence that starts like this:
 
 > In Listing 11-9, I used Blazor to create the administration features
 
