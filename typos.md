@@ -85,6 +85,12 @@ On Page 128, the Tip contains the word `Asset`, which should be `Assert`.
 
 **Chapter 8**
 
+On page 182, the text that describes Listing 8-3 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
 On page 188 the following text:
 
 > That means I can use the view component to generate the list of ***components*** and
@@ -121,7 +127,7 @@ On page 233, the text that describes Listing 9-19 refers to the `ConfigureServic
 
 **Chapter 11**
 
-On page 272, the text that describes Listing 1-8 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications.
+On page 272, the text that describes Listing 11-8 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications.
 
 (Thanks to Sam Miller for reporting this problem)
 
