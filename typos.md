@@ -138,6 +138,14 @@ should refer to Chapter 10 and not Listing 11-9.
 
 ***
 
+**Chapter 14**
+
+The examples that start on page 311 are not correctly updated for the introduction of the minimal API and do not properly explain endpoint routing.
+
+(Thanks to Oleksandr Shuryha for reporting this problem)
+
+***
+
 **Chapter 15**
 
 Figure 15-2 and the text that describes it refers to `Microsoft.Hosting.Lifetime`, which refers to a configuration setting from an earlier version of ASP.NET Core.
