@@ -85,6 +85,12 @@ On Page 128, the Tip contains the word `Asset`, which should be `Assert`.
 
 **Chapter 8**
 
+On page 181, the URL used to test the application is not case sensitive.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
 On page 182, the text that describes Listing 8-3 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
@@ -104,6 +110,12 @@ It should be:
 
 ---
 
+On page 189, the text that describes the unit test says the test data is passed to the tag helper class, but should say view component class.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
 The text that describes the unit test on p196 says:
 
 > and then call the `List` action method
@@ -113,6 +125,13 @@ It should be:
 > and then call the `Index` action method
 
 (Thanks to Sanjay Adlakhiya for reporting this problem)
+
+---
+
+On page 192, the name of the test class is misspelled. It should be `NavigationMenuViewComponentTests`, rather than `NavigatioMenuViewComponentTests`.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
 
 ---
 
