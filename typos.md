@@ -116,7 +116,7 @@ On page 189, the text that describes the unit test says the test data is passed 
 
 ---
 
-The text that describes the unit test on p196 says:
+One page 196, the  text that describes the unit test says:
 
 > and then call the `List` action method
 
@@ -132,6 +132,17 @@ On page 192, the name of the test class is misspelled. It should be `NavigationM
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
+---
+
+Page 209 contains the sentence: 
+
+>   The page model class in Listing 8-25, which is named CartModel, defines an OnPost hander method, which is invoked to handle HTTP POST requests. 
+
+This should be:
+
+>   The page model class in Listing 8-25, which is named CartModel, defines an OnPost ***handler*** method, which is invoked to handle HTTP POST requests. 
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
 
 ---
 
