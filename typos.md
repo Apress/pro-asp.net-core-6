@@ -23,11 +23,11 @@ Figure 3-11 should show a drop-down list.
 
 The text that follows Listing 4-8 says:
 
-> The new browser window can be displayed by setting the launchBrowser property shown 
+> The new browser window can be displayed by setting the launchBrowser property shown
 
 It should be:
 
-> The new browser window can be **disabled** by setting the launchBrowser property shown 
+> The new browser window can be **disabled** by setting the launchBrowser property shown
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
@@ -134,13 +134,13 @@ On page 192, the name of the test class is misspelled. It should be `NavigationM
 
 ---
 
-Page 209 contains the sentence: 
+Page 209 contains the sentence:
 
->   The page model class in Listing 8-25, which is named CartModel, defines an OnPost hander method, which is invoked to handle HTTP POST requests. 
+>   The page model class in Listing 8-25, which is named CartModel, defines an OnPost hander method, which is invoked to handle HTTP POST requests.
 
 This should be:
 
->   The page model class in Listing 8-25, which is named CartModel, defines an OnPost ***handler*** method, which is invoked to handle HTTP POST requests. 
+>   The page model class in Listing 8-25, which is named CartModel, defines an OnPost ***handler*** method, which is invoked to handle HTTP POST requests.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
@@ -160,6 +160,18 @@ On page 233, the text that describes Listing 9-19 refers to the `ConfigureServic
 On page 272, the text that describes Listing 11-8 refers to the `Configure` method, which is no longer used to configure ASP.NET Core applications.
 
 (Thanks to Sam Miller for reporting this problem)
+
+---
+
+On page 268, the ***Defining the Connection String*** section contains this sentence:
+
+> The next step is to define the connection string that will be for the database.
+
+This should be:
+
+>  The next step is to define the connection string for the database.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
 
 
 ---
