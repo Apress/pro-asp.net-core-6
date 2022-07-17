@@ -61,6 +61,7 @@ It should be version 6.0.0.
 On page 97, the description of extension methods incorrectly states they must be defined in the same namespace as the class that is being extended.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
+
 ---
 
 On page 110, the  text says:
