@@ -152,6 +152,19 @@ On page 233, the text that describes Listing 9-19 refers to the `ConfigureServic
 
 (Thanks to Sam Miller for reporting this problem)
 
+---
+
+**Chapter 10**
+
+On page 260, the `@if` expresson that determines whether the ID field is displayed does not properly deal with the nullable type used in the model class. This expression:
+
+    @if(Product.ProductID != 0) {
+
+should be:
+
+    @if(Product.ProductID.HasValue && Product.ProductID.Value != 0) {
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
 
 ---
 
@@ -173,7 +186,6 @@ This should be:
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
-
 ---
 
 On page 273, the  sentence that starts like this:
@@ -185,6 +197,40 @@ should refer to Chapter 10 and not Listing 11-9.
 (Thanks to Mike Barnett for reporting this problem)
 
 ***
+
+On page 276, this sentence:
+
+> Since this Razor Page has been configured with a page model class, I can apply the attribute with an `@attribute` expression.
+
+It should be:
+
+> Since this Razor Page has been configured ***without*** a page model class, I can apply the attribute with an `@attribute` expression.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
+On page 281, these sentences:
+
+> I have also set the local, which is required when deploying to a Docker container. The local I have chosen is en-US, which represents the language and currency conventions of English as it is spoken in the United States.
+
+should be:
+
+> I have also set the ***locale***, which is required when deploying to a Docker container. The ***locale*** I have chosen is en-US, which represents the language and currency conventions of English as it is spoken in the United States.
+
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
+On page 286, the URL for the repository refers to an earlier edition of the book. It should be:
+
+https://github.com/apress/pro-asp.net-core-6
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
 
 **Chapter 14**
 
