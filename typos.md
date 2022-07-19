@@ -232,6 +232,20 @@ https://github.com/apress/pro-asp.net-core-6
 
 ***
 
+**Chapter 12**
+
+On page 301, the description for the Cookies entry in Table `12-6` is as follows:
+
+> This property allows cookies to be associated with the request.
+
+This should be:
+
+> This property allows cookies to be associated with the ***response***.
+
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
 
 **Chapter 14**
 
