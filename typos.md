@@ -245,6 +245,14 @@ This should be:
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
+
+***
+
+On page 308, the cast to the `IApplicationBuilder` type is not required.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+
 ***
 
 **Chapter 14**
