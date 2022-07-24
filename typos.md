@@ -255,6 +255,24 @@ On page 308, the cast to the `IApplicationBuilder` type is not required.
 
 ***
 
+**Chapter 13**
+
+On page 345, this sentence:
+
+>   With the addition of the route in Listing 13-23, the routing middleware with handle all requests, 
+including those that match none of the regular routes. 
+
+should be:
+
+>   With the addition of the route in Listing 13-23, the routing middleware ***will*** handle all requests, 
+including those that match none of the regular routes. 
+
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+----
+
+
 **Chapter 14**
 
 The examples that start on page 311 are not correctly updated for the introduction of the minimal API and do not properly explain endpoint routing.
