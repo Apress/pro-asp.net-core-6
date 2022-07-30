@@ -281,6 +281,60 @@ The examples that start on page 311 are not correctly updated for the introducti
 
 ***
 
+On page 363, this sentence:
+
+>   Defining a service and consuming in the same code file may not seem impressive, but once a service is defined, it can be used almost anywhere in an ASP.NET Core application.
+
+should be:
+
+>   Defining a service and consuming ***it*** in the same code file may not seem impressive, but once a service is defined, it can be used almost anywhere in an ASP.NET Core application.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
+On page 363, the description for Listing `14-14` gives the location of the file as the `Services` folder. It should be the `Platform` folder.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
+On page 369, the text that follows Table 14-4 is awkwardly phrased and should make it obvious that the benefit of using the methods described in the table is the ability to instantiate classes that declare constructor dependencies.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+
+***
+
+On page 378, Listing 14-30 should comment out this statement, which is made redundant by the other changes:
+
+    T endpointInstance = ActivatorUtilities.CreateInstance<T>(app.ServiceProvider);
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+
+***
+
+On page 384, this sentence should make it clear that the IsDevelopment method is an extension method:
+
+> This example uses the Environment property to get an implementation of the IWebHostEnvironment interface and uses its IsDevelopment method to decide which services are set up for the application.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
+On page 389, this sentence:
+
+> This feature relies on the versions of the AddSIngleton, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments. 
+
+should be:
+
+> This feature relies on the versions of the ***AddSingleton***, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments. 
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+***
+
 **Chapter 15**
 
 Figure 15-2 and the text that describes it refers to `Microsoft.Hosting.Lifetime`, which refers to a configuration setting from an earlier version of ASP.NET Core.
