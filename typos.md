@@ -259,13 +259,13 @@ On page 308, the cast to the `IApplicationBuilder` type is not required.
 
 On page 345, this sentence:
 
->   With the addition of the route in Listing 13-23, the routing middleware with handle all requests, 
-including those that match none of the regular routes. 
+>   With the addition of the route in Listing 13-23, the routing middleware with handle all requests,
+including those that match none of the regular routes.
 
 should be:
 
->   With the addition of the route in Listing 13-23, the routing middleware ***will*** handle all requests, 
-including those that match none of the regular routes. 
+>   With the addition of the route in Listing 13-23, the routing middleware ***will*** handle all requests,
+including those that match none of the regular routes.
 
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
@@ -325,11 +325,11 @@ On page 384, this sentence should make it clear that the IsDevelopment method is
 
 On page 389, this sentence:
 
-> This feature relies on the versions of the AddSIngleton, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments. 
+> This feature relies on the versions of the AddSIngleton, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments.
 
 should be:
 
-> This feature relies on the versions of the ***AddSingleton***, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments. 
+> This feature relies on the versions of the ***AddSingleton***, AddScoped, and AddTransient methods that accept types as conventional arguments and cannot be performed using generic type arguments.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
@@ -337,9 +337,42 @@ should be:
 
 **Chapter 15**
 
-Figure 15-2 and the text that describes it refers to `Microsoft.Hosting.Lifetime`, which refers to a configuration setting from an earlier version of ASP.NET Core.
+On page 394, Figure 15-2 and the text that describes it refers to `Microsoft.Hosting.Lifetime`, which refers to a configuration setting from an earlier version of ASP.NET Core.
 
 (Thanks to Paul Williams for reporting this problem)
+
+---
+
+On page 404, the paragraph that follows Table 15-3 misspells Environment. Twice.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 405, the package installed by Listing 15-13 has been deprecated. The command is included in the .NET SDK and a separate package is no longer required.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 410, Table 15-4 omits the methods for the `warning` level.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 415, this sentence should include the `warning` level:
+
+>   You can tailor the logging levels to focus the log on those parts of the application that are of interest by setting a level to Trace, Debug, Information, Error, or Critical. Logging messages can be disabled for a category using the None value.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 414, the first sentence in the ***Configuring Minimum Logging Levels*** section incorrectly refers to Chapter 14, but should refer the reader to a previous section in the same chapter.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
 
 ---
 
