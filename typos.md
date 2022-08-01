@@ -373,6 +373,11 @@ On page 414, the first sentence in the ***Configuring Minimum Logging Levels*** 
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
+---
+
+On page 433, the sentence that follows Table 16-4 refers to the `Configure` method. This method is no longer used following the introduction of the top-level configuration statements for ASP.NET Core.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
 
 ---
 
