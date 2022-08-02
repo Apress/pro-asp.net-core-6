@@ -381,6 +381,29 @@ On page 433, the sentence that follows Table 16-4 refers to the `Configure` meth
 
 ---
 
+On page 438, this sentence specifies the wrong table:
+
+>   This simple data structure allows session data to be stored easily by each of the caches listed in `Table 16-6`. 
+
+This should be Table 16-5.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 441, this command in `Listing 16-10`:
+
+    dotnet dev-certs https –clean
+
+should have two hyphens for the argument, like this:
+
+    dotnet dev-certs https -–clean
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+
 **Chapter 21**
 
 The first sentence on page p569 says:
