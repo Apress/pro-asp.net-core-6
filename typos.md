@@ -461,3 +461,9 @@ Listing 23-18 contains the following fragment of markup, which incorrectly displ
 
 ---
 
+**Chapter 24**
+
+On page 669, the caption for `Listing 24-9` and the paragraph before the listing wrongly use the `.json` file extension. The file should be created using the `.cshtml` file extension.
+
+(Thanks to Stuart Willows for reporting this problem)
+
