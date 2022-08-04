@@ -257,6 +257,14 @@ On page 308, the cast to the `IApplicationBuilder` type is not required.
 
 **Chapter 13**
 
+On page 323, this sentence implies that omitting the leading / character is a requirement, which is not the case:
+
+>   URL patterns are expressed without a leading / character, which isn’t part of the URL path.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+----
+
 On page 345, this sentence:
 
 >   With the addition of the route in Listing 13-23, the routing middleware with handle all requests,
