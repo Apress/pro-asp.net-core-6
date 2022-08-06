@@ -411,6 +411,17 @@ should have two hyphens for the argument, like this:
 
 ---
 
+**Chapter 17**
+
+On page 461, this sentence specifies the wrong type for configuration with the `AddDistributedMemoryCache` method :
+
+>   This cache is configured using the `MemoryCacheOptions` class, whose most useful properties are described in Table 17-6. 
+
+The configuration type is `MemoryDistributedCacheOptions`.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
 
 **Chapter 21**
 
