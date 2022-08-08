@@ -363,6 +363,12 @@ On page 405, the package installed by Listing 15-13 has been deprecated. The com
 
 ---
 
+On page 409, the statements that create log messages in `Listing 15-20`cause code anlysis warnings because the ILogger<T> methods expect to receve a static string template and a set of values.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
 On page 410, Table 15-4 omits the methods for the `warning` level.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
