@@ -13,9 +13,15 @@ Figure 3-7 should show a value in the `Name` field, as described in the text.
 
 ---
 
-Figure 3-11 should show a drop-down list.
+Figure 3-11 should show a drop-down list. The problem is caused by this element in `Listing 3-23`:
 
-(Thanks to Ian Kode for reporting this problem)
+    <select asp-for="WillAttend" class="form-control">
+
+which should be:
+
+    <select asp-for="WillAttend" class="form-select">
+
+(Thanks to Ian Kode and Tom Calupca for reporting this problem)
 
 ---
 
@@ -480,6 +486,36 @@ https://docs.microsoft.com/en-gb/aspnet/core/security/cors
 ---
 
 On page 511, both statements in the `UpdateProduct` method have changed and should be marked in bold.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 517, the output from `Listing 19-22` should show a value of `Green Kayak` for the `name` field and not `GreenKayak`.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 518, the description for `Listing 19-23` should be:
+
+> Redirecting to an Action ***in*** the ProductsController.cs File in the Controllers Folder
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 518, the output from `Listing 19-23` should show a value of `Green Kayak` for the `name` field and not `GreenKayak`.
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+On page 519, the text before `Listing 19-25` should read:
+
+> Listing 19-25 updates the SaveProduct action to perform validation before storing the object that is created 
+> by the model binding process, ensuring that only objects that contain values for all four properties decorated 
+> with the validation attributes are accepted. 
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
