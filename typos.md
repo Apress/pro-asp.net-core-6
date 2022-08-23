@@ -521,6 +521,22 @@ On page 519, the text before `Listing 19-25` should read:
 
 ---
 
+**Chapter 20**
+
+On page 536, this sentence: 
+
+>   The action method is decorated with the HttpPatch attribute, which denotes that it will handle 
+HTTP requests. 
+
+should be:
+
+>   The action method is decorated with the HttpPatch attribute, which denotes that it will handle 
+HTTP **PATCH** requests. 
+
+(Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
 **Chapter 21**
 
 The first sentence on page p569 says:
