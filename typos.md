@@ -64,6 +64,7 @@ It should be version 6.0.0.
 
 **Chapter 5**
 
+
 On page 97, the description of extension methods incorrectly states they must be defined in the same namespace as the class that is being extended.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
@@ -87,6 +88,16 @@ It should be:
 On Page 128, the Tip contains the word `Asset`, which should be `Assert`.
 
 (Thanks to Paul Williams and Sanjay Adlakhiya for reporting this problem)
+
+***
+
+**Chapter 7**
+
+On page 145, the first sentence should be:
+
+>   The ***builder.Services*** property is used to set up objects, known as services, that can be used throughout the application and that are accessed through a feature called dependency injection, which I describe in Chapter 14. 
+
+(Thanks to Paul Marangoni for reporting this problem)
 
 ***
 
@@ -430,6 +441,16 @@ should have two hyphens for the argument, like this:
     dotnet dev-certs https -–clean
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
+
+---
+
+**Chapter 16**
+
+On page 438, the paragraph following the table contains a sentence that gives the wrong table reference. The sentence should be:
+
+> This simple data structure allows session data to be stored easily by each of the caches listed in ***Table 16-8***. 
+
+(Thanks to Paul Marangoni for reporting this problem)
 
 ---
 
