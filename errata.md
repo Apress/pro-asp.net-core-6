@@ -2,6 +2,18 @@
 
 This file contains errors that are likely to prevent the code examples from working as described in ths book. See [this](typos.md) file for small mistakes that I intend to correct in the next edition.
 
+
+
+**Chapter 4**
+
+On page 71, the package installed by `Listing 4-16` isn't able to install the Bootstrap package because of an API change in the package hosting service. Use these commands to install a more recent version of the `LibMan` package:
+
+    dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+    dotnet tool install --global Microsoft.Web.LibraryManager.Cli --version 2.1.175
+
+(Thanks to Stephan Keller for reporting this problem)
+
+
 ---
 
 **Chapter 5**
@@ -16,6 +28,28 @@ This should be:
 
 (Thanks to Aidan Plunkitt for reporting this problem)
 
+--- 
+
+**Chapter 7**
+
+On page 172, the package installed by `Listing 7-35` isn't able to install the Bootstrap package because of an API change in the package hosting service. Use these commands to install a more recent version of the `LibMan` package:
+
+    dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+    dotnet tool install --global Microsoft.Web.LibraryManager.Cli --version 2.1.175
+
+(Thanks to Stephan Keller for reporting this problem)
+
+---
+
+**Chapter 15**
+
+On page 423, the package installed by `Listing 15-32` isn't able to install the Bootstrap package because of an API change in the package hosting service. Use these commands to install a more recent version of the `LibMan` package:
+
+    dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+    dotnet tool install --global Microsoft.Web.LibraryManager.Cli --version 2.1.175
+
+(Thanks to Stephan Keller for reporting this problem)
+
 ---
 
 **Chapter 17**
@@ -27,3 +61,13 @@ On page 463, the `dotnet sql-cache` command is used, which relies on a command p
 (Thanks to Abdul W Yousufzai for reporting this problem)
 
 ---
+
+
+**Chapter 18**
+
+On page 487, the package installed by `Listing 18-14` isn't able to install the Bootstrap package because of an API change in the package hosting service. Use these commands to install a more recent version of the `LibMan` package:
+
+    dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+    dotnet tool install --global Microsoft.Web.LibraryManager.Cli --version 2.1.175
+
+(Thanks to Stephan Keller for reporting this problem)
