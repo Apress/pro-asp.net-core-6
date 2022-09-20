@@ -174,6 +174,12 @@ On page 233, the text that describes Listing 9-19 refers to the `ConfigureServic
 
 **Chapter 10**
 
+On page 258, the `Details` Razor Component shown in Listing 10-16 doesn't properly manage the lifecycle of the repository class, which means that changes made with the edit feature are not correctly displayed. The component should use the `OwningComponentBase<IStoreRepository>` base class, following the approach used in Listing 10-17.
+
+(Thanks to Olivier Roger for reporting this problem)
+
+---
+
 On page 260, the `@if` expresson that determines whether the ID field is displayed does not properly deal with the nullable type used in the model class. This expression:
 
     @if(Product.ProductID != 0) {
