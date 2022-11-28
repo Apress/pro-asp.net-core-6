@@ -234,6 +234,12 @@ It should be:
 
 ***
 
+On page 278, Listing 11-14 contains `div` elements that are configured to provide field-level validation for the username and password fields. Validation will only work with `span` elements, and these validation elements are  not required anyway because there is summary validation as well. 
+
+(Thanks to Jeff Hatch for reporting this problem)
+
+***
+
 On page 281, these sentences:
 
 > I have also set the local, which is required when deploying to a Docker container. The local I have chosen is en-US, which represents the language and currency conventions of English as it is spoken in the United States.
