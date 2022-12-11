@@ -468,6 +468,12 @@ On page 438, the paragraph following the table contains a sentence that gives th
 
 **Chapter 17**
 
+On page 458, the instructions following Listing 17-4 incorrectly specify the HTTPS scheme in the request URL. This should be HTTP.
+
+(Thanks to Uzoma Inyama for reporting this problem)
+
+---
+
 On page 461, this sentence specifies the wrong type for configuration with the `AddDistributedMemoryCache` method :
 
 >   This cache is configured using the `MemoryCacheOptions` class, whose most useful properties are described in Table 17-6. 
