@@ -91,6 +91,19 @@ On Page 128, the Tip contains the word `Asset`, which should be `Assert`.
 
 ***
 
+On page 137, this sentence:
+
+>   This approach is that it tends to produce unit tests that focus only on the parts of the application code that were difficult to write or that needed some serious debugging, leaving some aspects of a feature only partially tested or untested altogether.
+
+should be:
+
+>   **The problem with this** approach is that it tends to produce unit tests that focus only on the parts of the application code that were difficult to write or that needed some serious debugging, leaving some aspects of a feature only partially tested or untested altogether.
+
+(Thanks to Jim Becker for reporting this problem)
+
+***
+
+
 **Chapter 7**
 
 On page 145, the first sentence should be:
