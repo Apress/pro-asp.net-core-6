@@ -537,6 +537,20 @@ https://docs.microsoft.com/en-gb/aspnet/core/security/cors
 
 ---
 
+On page 511, the `UpdateProduct` method at the top of the page contains this statement:
+
+    context.Update(product);
+
+This statement works because the DataContext class inherits an `Update` method that accepts any object. The statement should have been:
+
+    context.Products.Update(product)
+
+The revised statement calls a method that is defined with a generic type parameter, which allows the compiler to highlight problems with argument types.
+
+(Thanks to Jiong Hui for reporting this problem)
+
+---
+
 On page 511, both statements in the `UpdateProduct` method have changed and should be marked in bold.
 
 (Thanks to Abdul W Yousufzai for reporting this problem)
