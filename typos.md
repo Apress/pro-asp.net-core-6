@@ -547,7 +547,7 @@ This statement works because the DataContext class inherits an `Update` method t
 
 The revised statement calls a method that is defined with a generic type parameter, which allows the compiler to highlight problems with argument types.
 
-(Thanks to Jiong Hui for reporting this problem)
+(Thanks to Jiong hui Luo for reporting this problem)
 
 ---
 
@@ -588,6 +588,20 @@ On page 519, the text before `Listing 19-25` should read:
 ---
 
 **Chapter 20**
+
+On page 527, the introduction includes the phrase:
+
+>   how to use content negations
+
+This should be:
+
+> how to use content ***negotiations*** 
+
+
+(Thanks to Jiong hui Luo for reporting this problem)
+
+---
+
 
 On page 536, this sentence: 
 
