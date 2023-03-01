@@ -651,6 +651,17 @@ The text before  Listing 22-14 doesn't correctly describe the purpose of the lis
 
 ---
 
+On page 617, the paragraph that follows the figure contains this sentence:
+
+>   There are two ways to solve this problem. The first is...
+
+The following text doesn't make it clear that the second way to solve this problem is to use the `IsSectionDefined` method, which is desribed in the Testing for Layout Sections section.
+
+(Thanks to Jiong Hui Luo for reporting this problem)
+
+
+---
+
 **Chapter 23**
 
 The text before Listing 23-6 should make it clear that the routing pattern must be used in conjunction with the parameters defined by the `OnGet` method.
