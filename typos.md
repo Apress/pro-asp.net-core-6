@@ -691,3 +691,59 @@ On page 669, the caption for `Listing 24-9` and the paragraph before the listing
 
 (Thanks to Stuart Willows for reporting this problem)
 
+---
+
+On pages 682, 683, and 684, the bold statements in the listings contain additional or incorrect characters. The bold statement in Listing 24-22 should be:
+
+    <vc:city-summary theme-name="secondary" />
+
+The bold statement in Listing 24-23 should be:
+
+    <vc:city-summary theme-name="danger" />
+
+The bold statement in Listing 24-24 should be:
+
+    public IViewComponentResult Invoke(string themeName="success") {
+
+(Thanks to Jiong Hui Luo for reporting this problem)
+
+---
+
+**Chapter 25**
+
+On page 697, the introductory text for tag helpers shows the wrong srt of attributes for the untransformed element. The fragment of markup should be:
+
+    <tr bg-color="primary">
+        <th colspan="2">Product Summary</th>
+    </tr>
+
+(Thanks to Jiong Hui Luo for reporting this problem)
+
+---
+
+**Chapter 26**
+
+On page 743, Listing 26-10 contains this element:
+
+    <script asp-src-include="lib/jquery**/*.min.js"></script>
+
+which should be:
+
+    <script asp-src-include="lib/jquery/**/*.min.js"></script>
+
+(Thanks to Jiong Hui Luo for reporting this problem)
+
+---
+
+**Chapter 30**
+
+On page 929, this sentence:
+
+>    URL segment and throws an ArgumentOutOfRangeException if its value is greater than 50. If there is a value and it is in range, then the action method returns a ViewResult.
+
+which should be:
+
+> URL segment and throws an ArgumentOutOfRangeException if its value is greater than **10**. If there is a value 
+and it is in range, then the action method returns a ViewResult.
+
+(Thanks to Jiong Hui Luo for reporting this problem)
