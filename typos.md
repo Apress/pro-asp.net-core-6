@@ -747,3 +747,29 @@ which should be:
 and it is in range, then the action method returns a ViewResult.
 
 (Thanks to Jiong Hui Luo for reporting this problem)
+
+---
+
+**Chapter 31**
+
+On page 944, the sentence before Listing 31-2 should be:
+
+> Create the **Views/Home/Index.cshtml** files, as shown in Listing 31-2.
+
+(Thanks to Jiong Hui Luo for reporting this problem)
+
+--- 
+
+**Chapter 39**
+
+On page 1208, the text before Listing 39-7 includes this sentence:
+
+>   ASP.NET Core Identity provides a middleware component that detects the cookie created by the 
+SignInManager<T> class and populates the HttpContex object with details of the authenticated user. 
+
+which should be:
+
+> ASP.NET Core Identity provides a middleware component that detects the cookie created by the 
+SignInManager<T> class and populates the **HttpContext** object with details of the authenticated user. 
+
+(Thanks to Jiong Hui Luo for reporting this problem)
