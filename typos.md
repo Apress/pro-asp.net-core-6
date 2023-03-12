@@ -773,3 +773,9 @@ which should be:
 SignInManager<T> class and populates the **HttpContext** object with details of the authenticated user. 
 
 (Thanks to Jiong Hui Luo for reporting this problem)
+
+---
+
+On page 1236, the first sentence following the listing should have been removed. 
+
+(Thanks to Jiong Hui Luo for reporting this problem)
